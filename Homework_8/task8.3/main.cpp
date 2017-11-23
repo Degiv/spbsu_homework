@@ -44,4 +44,5 @@ int main()
     show(table.table[indexMax]);
     cout << endl << "Number of elements in hash-table is: " << table.elementsCounter << endl;
     cout << "Number of empty cells of hash-table is: " << emptyCounter;
+    clear(table);
 }

@@ -69,3 +69,12 @@ void show(List &list)
         tmp = tmp->next;
     }
 }
+
+void clear(List &list)
+{
+    while (!isEmpty(list))
+    {
+        pop(list);
+    }
+    list.head = nullptr;
+}

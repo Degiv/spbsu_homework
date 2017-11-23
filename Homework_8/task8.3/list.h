@@ -23,3 +23,5 @@ String pop(List &list);
 
 void show(List &list);
 
+void clear(List &list);
+

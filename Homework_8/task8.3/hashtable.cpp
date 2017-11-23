@@ -55,3 +55,14 @@ void add(HashTable &table, String value)
     if (!add(table.table[index], value))
         table.elementsCounter--;
 }
+
+void clear(HashTable &table)
+{
+    for (int i = 0; i < table.size; ++i)
+    {
+        clear(table.table[i]);
+    }
+    table.elementsCounter = 0;
+    table.size = firstSize;
+    table.table = nullptr;
+}

@@ -13,3 +13,6 @@ struct HashTable
 double loadFactor(HashTable &table);
 
 void add(HashTable &table, String value);
+
+void clear(HashTable &table);
+
