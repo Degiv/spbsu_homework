@@ -41,6 +41,7 @@ void update(HashTable &table)
             add(newTable, pop(table.table[i]));
         }
     }
+    delete[] table.table;
     table.table = newTable.table;
     table.size = newTable.size;
     table.usedCounter = newTable.usedCounter + 1;
