@@ -8,6 +8,7 @@ struct HashTable
     List* table = new List[firstSize];
     int size = firstSize;
     int elementsCounter = 0;
+    int usedCounter = 0;
 };
 
 double loadFactor(HashTable &table);

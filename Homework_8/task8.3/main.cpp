@@ -28,21 +28,18 @@ int main()
     fin.close();
 
     cout << "Load factor is: " << loadFactor(table) << endl;
-    cout << "Average length of list: " << loadFactor(table) << endl;
+    cout << "Average length of list: " << (double)table.elementsCounter / (double)table.size << endl;
     int emptyCounter = 0;
     int indexMax = 0;
     for (int i = 0; i < table.size; ++i)
     {
         if (table.table[i].size > table.table[indexMax].size)
             indexMax = table.table[i].size;
-
-        if (table.table[i].size == 0)
-            emptyCounter++;
     }
     cout << "Maximal length of list: " << table.table[indexMax].size << endl;
     cout << "List with maximal length is: ";
     show(table.table[indexMax]);
     cout << endl << "Number of elements in hash-table is: " << table.elementsCounter << endl;
-    cout << "Number of empty cells of hash-table is: " << emptyCounter;
+    cout << "Number of empty cells of hash-table is: " << table.size - table.usedCounter;
     clear(table);
 }

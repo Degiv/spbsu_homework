@@ -24,7 +24,7 @@ int hashFunction(String &string, int mod)
 
 double loadFactor(HashTable &table)
 {
-    return (double)table.elementsCounter / (double)table.size;
+    return (double)table.usedCounter / (double)table.size;
 }
 
 void add(HashTable &table, String value);
@@ -43,17 +43,22 @@ void update(HashTable &table)
     }
     table.table = newTable.table;
     table.size = newTable.size;
+    table.usedCounter = newTable.usedCounter + 1;
 }
 
 void add(HashTable &table, String value)
 {
-    table.elementsCounter++;
+    table.usedCounter++;
     if (loadFactor(table) > 1.0)
         update(table);
 
     int index = hashFunction(value, table.size);
-    if (!add(table.table[index], value))
-        table.elementsCounter--;
+
+    if (!isEmpty(table.table[index]))
+        table.usedCounter--;
+
+    if (add(table.table[index], value))
+        table.elementsCounter++;
 }
 
 void clear(HashTable &table)
@@ -63,6 +68,7 @@ void clear(HashTable &table)
         clear(table.table[i]);
     }
     table.elementsCounter = 0;
+    table.usedCounter = 0;
     table.size = firstSize;
     table.table = nullptr;
 }
