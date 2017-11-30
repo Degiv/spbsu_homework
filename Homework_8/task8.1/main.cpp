@@ -33,9 +33,14 @@ int main()
     {
         cout << i + 1 << ' ';
         tmp = &students[i];
-        while (tmp->origin != tmp)
-            tmp = tmp->origin;
-        cout << tmp->number + 1 << endl;
+        if (!tmp->origin)
+            cout << "no origin, send down" << endl;
+        else
+        {
+            while (tmp->origin != tmp)
+                tmp = tmp->origin;
+            cout << tmp->number + 1 << endl;
+        }
     }
     delete[] students;
     delete tmp;
