@@ -4,7 +4,7 @@
 struct ListElement
 {
     Person value;
-    ListElement *next;
+    ListElement *next = nullptr;
 };
 
 struct List
@@ -24,3 +24,5 @@ ListElement* findName(List *myList, char *phone);
 ListElement* findPhone(List *myList, char* name);
 
 void showList(ofstream &fout, List *myList);
+
+void clearList(List *myList);

@@ -77,5 +77,8 @@ int main()
         }
         cout << endl;
     }
+
+    clearList(phonebook);
+    delete newPerson;
     fout.close();
 }

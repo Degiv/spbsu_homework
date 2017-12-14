@@ -63,3 +63,15 @@ void showList(ofstream &fout, List *myList)
     }
     fout << "end";
 }
+
+void clearList(List *myList)
+{
+    ListElement* tmp = myList->head;
+    while(tmp)
+    {
+        myList->head = myList->head->next;
+        delete tmp;
+        tmp = myList->head;
+    }
+    myList->size = 0;
+}
