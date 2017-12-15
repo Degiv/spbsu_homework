@@ -30,18 +30,15 @@ bool add(List &list, String newValue)
     }
 
     if (contains(list, newValue))
-    {
-        return false;
-    }
-    else
-    {
-        list.size++;
-        ListElement* newElement = new ListElement;
-        newElement->value = clone(newValue);
-        newElement->next = list.head;
-        list.head = newElement;
-        return true;
-    }
+            return false;
+
+    list.size++;
+    ListElement* newElement = new ListElement;
+    newElement->value = clone(newValue);
+    delete[] newValue.data;
+    newElement->next = list.head;
+    list.head = newElement;
+    return true;
 }
 
 String pop(List &list)
@@ -72,9 +69,14 @@ void show(List &list)
 
 void clear(List &list)
 {
+    ListElement* tmp = list.head;
     while (!isEmpty(list))
     {
-        pop(list);
+        tmp = tmp->next;
+        delete list.head->value.data;
+        delete list.head;
+        list.head = tmp;
+        list.size--;
     }
     list.head = nullptr;
 }

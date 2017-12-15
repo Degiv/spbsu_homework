@@ -28,7 +28,7 @@ int main()
     fin.close();
 
     cout << "Load factor is: " << loadFactor(table) << endl;
-    cout << "Average length of list: " << (double)table.elementsCounter / (double)table.size << endl;
+    cout << "Average length of list: " << (double) table.elementsCounter / table.size << endl;
     int emptyCounter = 0;
     int indexMax = 0;
     for (int i = 0; i < table.size; ++i)

@@ -24,7 +24,7 @@ int hashFunction(String &string, int mod)
 
 double loadFactor(HashTable &table)
 {
-    return (double)table.usedCounter / (double)table.size;
+    return (double) table.usedCounter / table.size;
 }
 
 void add(HashTable &table, String value);
