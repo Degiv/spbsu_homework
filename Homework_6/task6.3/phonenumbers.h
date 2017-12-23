@@ -16,4 +16,11 @@ bool areEqual(char *str1, char *str2);
 void input(ifstream &fin, char *str);
 void input(char *str);
 void show(char *str);
+/** \brief
+ *
+ * \param fout ofstream&
+ * \param str char*
+ * \return void
+ *
+ */
 void show(ofstream &fout, char *str);

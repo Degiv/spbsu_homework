@@ -5,6 +5,15 @@
 
 using namespace std;
 
+enum Command {
+    exit, add, find1, find2, save
+};
+
+Command setCommand(int tmp)
+{
+    return static_cast<Command>(tmp);
+}
+
 int main()
 {
     ifstream fin;
@@ -25,11 +34,12 @@ int main()
 
     ofstream fout;
     fout.open("phone_numbers.txt");
-    int way = 1;
+    int tmp = 1;
+    Command way = setCommand(tmp);
     char name[maxSize];
     char phone[maxSize];
-    ListElement *searched;
-    while (way != 0)
+    ListElement *searched = nullptr;
+    while (way != exit)
     {
         cout << "0 - exit" << endl;
         cout << "1 - add note" << endl;
@@ -37,18 +47,19 @@ int main()
         cout << "3 - find name by phone number" << endl;
         cout << "4 - save" << endl;
         cout << "Enter a number: ";
-        cin >> way;
+        cin >> tmp;
+        way = setCommand(tmp);
         cin.get(curSymbol);
         switch (way)
         {
-            case 1:
+            case add:
                 cout << "Enter phone number and name: ";
                 input(newPerson->phone);
                 input(newPerson->name);
                 pushBack(phonebook, *newPerson);
                 break;
 
-            case 2:
+            case find1:
                 cout << "Enter name: ";
                 input(name);
                 searched = findName(phonebook, name);
@@ -59,7 +70,7 @@ int main()
                     show(searched->value.phone);
                 break;
 
-            case 3:
+            case find2:
                 cout << "Enter phone number: ";
                 input(phone);
                 show(phone); cout << endl;
@@ -71,7 +82,7 @@ int main()
                     show(searched->value.name);
                 break;
 
-            case 4:
+            case save:
                 showList(fout, phonebook);
                 break;
         }
