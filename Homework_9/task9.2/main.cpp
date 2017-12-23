@@ -9,6 +9,12 @@ int main()
     ifstream fin("filename.txt");
     ofstream fout("codedtext.txt");
 
+    if (!fin)
+    {
+        cout << "File " << '"' << "filename.txt" << '"' << " is not found";
+        return 0;
+    }
+
     int sizeTable = 0;
     Symbol* table = nullptr;
     Node* headTree = nullptr;
