@@ -3,22 +3,22 @@
 
 struct String
 {
-    char *data;
+    char *data = nullptr;
     int size = 0;
 };
 
-bool areEqual(String &string1, String &string2);
+bool areEqual(String const &string1, String const &string2);
 
 void input(String &string, std::ifstream &fin);
 
-void output(String &string);
+void output(String const &string);
 
-String clone(String &string);
+String clone(String const &string);
 
-void cont(String &string, String &addition);
+void cont(String &string, String const &addition);
 
-String getSubstring(String &string, int first, int last);
+String getSubstring(String const &string, int first, int last);
 
 void clear(String &string);
 
-char *getCharArray(String &string);
+char *getCharArray(String const &string);

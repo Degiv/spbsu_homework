@@ -1,12 +1,14 @@
 #include "list.h"
 #include <iostream>
 
-bool isEmpty(List &list)
+using namespace std;
+
+bool isEmpty(List const &list)
 {
     return list.size == 0;
 }
 
-bool contains(List &list, String value)
+bool contains(List const &list, String value)
 {
     ListElement* tmp = list.head;
     for (int i = 0; i < list.size; ++i)
@@ -24,7 +26,8 @@ bool add(List &list, String newValue)
     if (isEmpty(list))
     {
         list.head = new ListElement;
-        list.head->value = newValue;
+        //cout << "new(" << (int)list.head << ")\n";
+        list.head->value = clone(newValue);
         list.size++;
         return true;
     }
@@ -34,8 +37,8 @@ bool add(List &list, String newValue)
 
     list.size++;
     ListElement* newElement = new ListElement;
+    //cout << "new(" << (int)newElement << ")\n";
     newElement->value = clone(newValue);
-    delete[] newValue.data;
     newElement->next = list.head;
     list.head = newElement;
     return true;
@@ -52,11 +55,12 @@ String pop(List &list)
     list.head = list.head->next;
     clear(tmpElement->value);
     delete tmpElement;
+    //cout << "delete(" << (int)tmpElement << ")\n";
     list.size--;
     return tmpValue;
 }
 
-void show(List &list)
+void show(List const &list)
 {
     ListElement* tmp = list.head;
     for (int i = 0; i < list.size; ++i)
@@ -73,8 +77,10 @@ void clear(List &list)
     while (!isEmpty(list))
     {
         tmp = tmp->next;
-        delete list.head->value.data;
+        delete[] list.head->value.data;
+        //cout << "delete(" << (int)list.head->value.data << ")\n";
         delete list.head;
+        //cout << "delete(" << (int)list.head << ")\n";
         list.head = tmp;
         list.size--;
     }

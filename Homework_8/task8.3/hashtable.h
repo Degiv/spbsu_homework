@@ -1,5 +1,6 @@
 #pragma once
 #include "list.h"
+#include <iostream>
 
 const int firstSize = 5;
 
@@ -11,7 +12,7 @@ struct HashTable
     int usedCounter = 0;
 };
 
-double loadFactor(HashTable &table);
+double loadFactor(HashTable const &table);
 
 void add(HashTable &table, String value);
 

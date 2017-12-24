@@ -25,6 +25,7 @@ int main()
         input(curWord, fin);
         add(table, curWord);
     }
+    clear(curWord);
     fin.close();
 
     cout << "Load factor is: " << loadFactor(table) << endl;
@@ -40,6 +41,6 @@ int main()
     cout << "List with maximal length is: ";
     show(table.table[indexMax]);
     cout << endl << "Number of elements in hash-table is: " << table.elementsCounter << endl;
-    cout << "Number of empty cells of hash-table is: " << table.size - table.usedCounter;
+    cout << "Number of empty cells of hash-table is: " << table.size - table.usedCounter << endl;
     clear(table);
 }

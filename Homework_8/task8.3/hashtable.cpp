@@ -1,5 +1,7 @@
 #include "hashtable.h"
 
+using namespace std;
+
 int exponention(int x, int n, int mod)
 {
     if (n == 0)
@@ -11,7 +13,7 @@ int exponention(int x, int n, int mod)
     return (x * exponention(x, n - 1, mod)) % mod;
 }
 
-int hashFunction(String &string, int mod)
+int hashFunction(String const &string, int mod)
 {
     const int factor = 13;
     int result = 0;
@@ -22,7 +24,7 @@ int hashFunction(String &string, int mod)
     return result;
 }
 
-double loadFactor(HashTable &table)
+double loadFactor(HashTable const &table)
 {
     return (double) table.usedCounter / table.size;
 }
@@ -34,6 +36,7 @@ void update(HashTable &table)
     HashTable newTable;
     newTable.size = table.size * 2 + 1;
     newTable.table = new List[newTable.size];
+    //cout << "new(" << (int)newTable.table <<")\n";
     for (int i = 0; i < table.size; ++i)
     {
         while (!isEmpty(table.table[i]))
@@ -42,6 +45,7 @@ void update(HashTable &table)
         }
     }
     delete[] table.table;
+    //cout << "delete(" << (int)table.table << ")\n";
     table.table = newTable.table;
     table.size = newTable.size;
     table.usedCounter = newTable.usedCounter + 1;

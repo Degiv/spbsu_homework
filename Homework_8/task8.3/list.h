@@ -13,15 +13,15 @@ struct List
     int size = 0;
 };
 
-bool isEmpty(List &list);
+bool isEmpty(List const &list);
 
-bool contains(List &list, String value);
+bool contains(List const &list, String value);
 
 bool add(List &list, String newValue);
 
 String pop(List &list);
 
-void show(List &list);
+void show(List const &list);
 
 void clear(List &list);
 

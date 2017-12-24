@@ -4,7 +4,7 @@
 
 using namespace std;
 
-bool areEqual(String &string1, String &string2) {
+bool areEqual(String const &string1, String const &string2) {
     if (string1.size != string2.size)
         return false;
 
@@ -18,14 +18,16 @@ bool areEqual(String &string1, String &string2) {
 void clear(String &string)
 {
     delete[] string.data;
+    //cout << "delete(" << (int)string.data << ")\n";
     string.size = 0;
 }
 
-String clone(String &string)
+String clone(String const &string)
 {
     String newString;
     newString.size = string.size;
     newString.data = new char[newString.size];
+    //cout << "new(" << (int)newString.data << ")\n";
     for (int i = 0; i < newString.size; i++)
     {
         newString.data[i] = string.data[i];
@@ -33,7 +35,7 @@ String clone(String &string)
     return newString;
 }
 
-void cont(String &string, String &addition) {
+void cont(String &string, String const &addition) {
 	int newSize = string.size + addition.size;
 	char *newData = new char[newSize];
 
@@ -48,13 +50,13 @@ void cont(String &string, String &addition) {
 	string.data = newData;
 }
 
-char* getCharArray(String &string)
+char* getCharArray(String const &string)
 {
     return string.data;
 }
 
 // [first, last)
-String getSubstring(String &string, int first, int last) {
+String getSubstring(String const &string, int first, int last) {
 	String result;
 	if (last > string.size || first >= last)
 		return result;
@@ -73,6 +75,7 @@ String getSubstring(String &string, int first, int last) {
 
 void input(String &string, ifstream &fin)
 {
+    clear(string);
     const int maxSize = 1000;
     char tmp[maxSize];
     char curSymbol = 0;
@@ -87,6 +90,7 @@ void input(String &string, ifstream &fin)
     }
 
     string.data = new char [size];
+    //cout << "new(" << (int)string.data << ")\n";
     string.size = size;
     for (int i = 0; i < size; ++i)
     {
@@ -94,7 +98,7 @@ void input(String &string, ifstream &fin)
     }
 }
 
-void output(String &string)
+void output(String const &string)
 {
     for (int i = 0; i < string.size; i++)
         std::cout << string.data[i];
