@@ -44,6 +44,8 @@ int main()
                 status = integer;
             else if (current == '.')
                 status = afterDot;
+            else if (current == 'E')
+                status = afterE;
             else
                 status = error;
             break;
