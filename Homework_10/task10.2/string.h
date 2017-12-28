@@ -3,7 +3,7 @@
 
 struct String
 {
-    char *data;
+    char *data = nullptr;
     int size = 0;
 };
 

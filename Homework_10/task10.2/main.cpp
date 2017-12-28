@@ -37,6 +37,7 @@ int* rabinCarp(String main, String substring, int &size)
     int* occurences = new int[main.size];
     size = 0;
     bool areEqual = false;
+    int exponentionResult = exponention(ratio, substring.size - 1, mod);
     for (int i = 0; i < main.size - substring.size + 1; ++i)
     {
         if (mainHash == substringHash)
@@ -56,7 +57,8 @@ int* rabinCarp(String main, String substring, int &size)
                 ++size;
             }
         }
-        mainHash = (mainHash + mod - (main.data[i] * exponention(ratio, substring.size - 1, mod)) % mod) * ratio + main.data[i + substring.size];
+        if (i < main.size - substring.size)
+            mainHash = (mainHash + mod - (main.data[i] * exponentionResult) % mod) * ratio + main.data[i + substring.size];
         mainHash %= mod;
     }
 
