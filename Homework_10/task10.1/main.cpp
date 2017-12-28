@@ -11,7 +11,6 @@ struct index
     int x = 0;
 };
 
-
 void findNodes(int** map, int n, index &start, index &goal)
 {
     for (int i = 0; i < n; ++i)
@@ -39,63 +38,45 @@ int h(int x1, int y1, int x2, int y2)
     return fabs(x1 - x2) + fabs(y1 - y2);
 }
 
+bool areCorrect(int n, int x, int y)
+{
+    return (x >= 0 && x < n && y >= 0 && y < n);
+}
+
+void updateDistLocal(int** map, int** dist, bool** areUsed, int** previousHeight, int** previousWide, int n, int x, int y, int prevX, int prevY)
+{
+    if (areCorrect(n, x, y) && map[y][x] != '1' && (dist[y][x] == -1 || dist[y][x] > dist[prevY][prevX] + 1))
+    {
+        dist[y][x] = dist[prevY][prevX] + 1;
+        previousHeight[y][x] = prevY;
+        previousWide[y][x] = prevX;
+    }
+}
+
 void updateDist(int** map, int** dist, bool** areUsed, int** previousHeight, int** previousWide, int n, index const &current)
 {
-    if (current.y + 1 < n && map[current.y + 1][current.x] != '1' && (dist[current.y + 1][current.x] == -1 || dist[current.y + 1][current.x] > dist[current.y][current.x] + 1))
+    updateDistLocal(map, dist, areUsed, previousHeight, previousWide, n, current.x, current.y + 1, current.x, current.y);
+    updateDistLocal(map, dist, areUsed, previousHeight, previousWide, n, current.x + 1, current.y, current.x, current.y);
+    updateDistLocal(map, dist, areUsed, previousHeight, previousWide, n, current.x, current.y - 1, current.x, current.y);
+    updateDistLocal(map, dist, areUsed, previousHeight, previousWide, n, current.x - 1, current.y, current.x, current.y);
+}
+
+void updateCurrentLocal(int** map, bool** areUsed, int** dist, int n, index const &goal, index &current, int &minF, int i, int j, int prevI, int prevJ)
+{
+    if (j < n && map[i][j] != '1' && !areUsed[i][j] && (minF == -1 || minF > dist[prevI][prevJ] + 1 + h(j, i, goal.x, goal.y)))
     {
-        dist[current.y + 1][current.x] = dist[current.y][current.x] + 1;
-        previousHeight[current.y + 1][current.x] = current.y;
-        previousWide[current.y + 1][current.x] = current.x;
-    }
-    if (current.x + 1 < n && map[current.y][current.x + 1] != '1' && (dist[current.y][current.x + 1] == -1 || dist[current.y][current.x + 1] > dist[current.y][current.x] + 1))
-    {
-        dist[current.y][current.x + 1] = dist[current.y][current.x] + 1;
-        previousHeight[current.y][current.x + 1] = current.y;
-        previousWide[current.y][current.x + 1] = current.x;
-    }
-    if (current.x - 1 > 0 && map[current.y][current.x - 1] != '1' && (dist[current.y][current.x - 1] == -1 || dist[current.y][current.x - 1] > dist[current.y][current.x] + 1))
-    {
-        dist[current.y][current.x - 1] = dist[current.y][current.x] + 1;
-        previousHeight[current.y][current.x - 1] = current.y;
-        previousWide[current.y][current.x - 1] = current.x;
-    }
-    if (current.y - 1 < n && map[current.y - 1][current.x] != '1' && (dist[current.y - 1][current.x] == -1 || dist[current.y - 1][current.x] > dist[current.y][current.x] + 1))
-    {
-        dist[current.y - 1][current.x] = dist[current.y][current.x] + 1;
-        previousHeight[current.y - 1][current.x] = current.y;
-        previousWide[current.y - 1][current.x] = current.x;
+        minF = dist[prevI][prevJ] + 1 + h(j, i, goal.x, goal.y);
+        current.x = j;
+        current.y = i;
     }
 }
 
 void updateCurrent(int** map, bool** areUsed, int** dist, int n, index const &goal, index &current, int &minF, int i, int j)
 {
-    if (j + 1 < n && map[i][j + 1] != '1' && !areUsed[i][j + 1] && (minF == -1 || minF > dist[i][j] + 1 + h(j + 1, i, goal.x, goal.y)))
-    {
-        minF = dist[i][j] + 1 + h(j + 1, i, goal.x, goal.y);
-        current.x = j + 1;
-        current.y = i;
-    }
-
-    if (i + 1 < n && map[i + 1][j] != '1' && map[i + 1][j] != '1' && !areUsed[i + 1][j] && (minF == -1 || minF > dist[i][j] + 1 + h(j, i + 1, goal.x, goal.y)))
-    {
-        minF = dist[i][j] + 1 + h(j, i + 1, goal.x, goal.y);
-        current.x = j;
-        current.y = i + 1;
-    }
-
-    if (j - 1 > 0 && map[i][j - 1] != '1' && !areUsed[i][j - 1] && (minF == -1 || minF > dist[i][j] + 1 + h(j - 1, i, goal.x, goal.y)))
-    {
-        minF = dist[i][j] + 1 + h(j - 1, i, goal.x, goal.y);
-        current.x = j - 1;
-        current.y = i;
-    }
-
-    if (i - 1 > 0 && map[i - 1][j] != '1' && !areUsed[i - 1][j] && (minF == -1 || minF > dist[i][j] + 1 + h(j, i - 1, goal.x, goal.y)))
-    {
-        minF = dist[i][j] + 1 + h(j, i - 1, goal.x, goal.y);
-        current.x = j;
-        current.y = i - 1;
-    }
+    updateCurrentLocal(map, areUsed, dist, n, goal, current, minF, i + 1, j, i, j);
+    updateCurrentLocal(map, areUsed, dist, n, goal, current, minF, i - 1, j, i, j);
+    updateCurrentLocal(map, areUsed, dist, n, goal, current, minF, i, j + 1, i, j);
+    updateCurrentLocal(map, areUsed, dist, n, goal, current, minF, i, j - 1, i, j);
 }
 
 void aStar(int** map, int n)
