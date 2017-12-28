@@ -34,6 +34,7 @@ void add(HashTable &table, String value);
 void update(HashTable &table)
 {
     HashTable newTable;
+    delete[] newTable.table;
     newTable.size = table.size * 2 + 1;
     newTable.table = new List[newTable.size];
     //cout << "new(" << (int)newTable.table <<")\n";
