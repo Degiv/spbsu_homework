@@ -20,7 +20,7 @@ int main()
     Command way = setCommand(tmp);
     int value = 0;
 
-    while (way != exit)
+    while (tmp != 0)
     {
         cout << "0. Exit" << endl;
         cout << "1. Add value" << endl;
