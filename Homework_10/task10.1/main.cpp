@@ -33,7 +33,7 @@ void findNodes(int** map, int n, index &start, index &goal)
     }
 }
 
-int h(int x1, int y1, int x2, int y2)
+int heuristic(int x1, int y1, int x2, int y2)
 {
     return fabs(x1 - x2) + fabs(y1 - y2);
 }
@@ -63,9 +63,9 @@ void updateDist(int** map, int** dist, bool** areUsed, int** previousHeight, int
 
 void updateCurrentLocal(int** map, bool** areUsed, int** dist, int n, index const &goal, index &current, int &minF, int i, int j, int prevI, int prevJ)
 {
-    if (j < n && map[i][j] != '1' && !areUsed[i][j] && (minF == -1 || minF > dist[prevI][prevJ] + 1 + h(j, i, goal.x, goal.y)))
+    if (j < n && map[i][j] != '1' && !areUsed[i][j] && (minF == -1 || minF > dist[prevI][prevJ] + 1 + heuristic(j, i, goal.x, goal.y)))
     {
-        minF = dist[prevI][prevJ] + 1 + h(j, i, goal.x, goal.y);
+        minF = dist[prevI][prevJ] + 1 + heuristic(j, i, goal.x, goal.y);
         current.x = j;
         current.y = i;
     }
