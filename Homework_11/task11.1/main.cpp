@@ -14,6 +14,7 @@ bool isNumber(char token)
 
 int main()
 {
+    cout << "Enter your expression: ";
     char current = 0;
     cin.get(current);
     State status = sign;
