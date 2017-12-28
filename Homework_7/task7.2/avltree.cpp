@@ -131,8 +131,8 @@ Node* recursiveRemove(Node* node, int value)
             return right;
 
         Node* maxNode = findMax(left);
-        maxNode->right = right;
         maxNode->left = removeMax(left);
+        maxNode->right = right;
         return balance(maxNode);
     }
 
