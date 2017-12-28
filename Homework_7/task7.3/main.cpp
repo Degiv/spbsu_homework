@@ -13,6 +13,7 @@ int main()
     showTree(tree);
     cout << endl << "Result is: " << calculate(tree);
     fin.close();
+    clear(tree);
 }
 
 
