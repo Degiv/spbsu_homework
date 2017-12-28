@@ -39,7 +39,7 @@ int main()
     char name[maxSize];
     char phone[maxSize];
     ListElement *searched = nullptr;
-    while (way != exit)
+    while (tmp != 0)
     {
         cout << "0 - exit" << endl;
         cout << "1 - add note" << endl;
