@@ -3,13 +3,24 @@
 
 using namespace std;
 
+enum Command
+{
+    exit, addValue, removeValue, containsValue, showInc, showDec, showSpec
+};
+
+Command setCommand(int tmp)
+{
+    return static_cast<Command>(tmp);
+}
+
 int main()
 {
     AVLtree tree;
-    int way = 1;
+    int tmp = 1;
+    Command way = setCommand(tmp);
     int value = 0;
 
-    while (way != 0)
+    while (way != exit)
     {
         cout << "0. Exit" << endl;
         cout << "1. Add value" << endl;
@@ -19,23 +30,24 @@ int main()
         cout << "5. Show tree with decreasing order" << endl;
         cout << "6. Show tree in special form" << endl;
         cout << "Enter a number: ";
-        cin >> way;
+        cin >> tmp;
+        way = setCommand(tmp);
 
         switch(way)
         {
-            case 1:
+            case addValue:
                 cout << "Enter a new value: ";
                 cin >> value;
                 add(tree, value);
                 break;
 
-            case 2:
+            case removeValue:
                 cout << "Enter value for remove: ";
                 cin >> value;
                 remove(tree, value);
                 break;
 
-            case 3:
+            case containsValue:
                 cout << "Enter a value for check: ";
                 cin >> value;
 
@@ -45,17 +57,17 @@ int main()
                     cout << "Value is not found" << endl;
                 break;
 
-            case 4:
+            case showInc:
                 showIncreasing(tree);
                 cout << endl;
                 break;
 
-            case 5:
+            case showDec:
                 showDecreasing(tree);
                 cout << endl;
                 break;
 
-            case 6:
+            case showSpec:
                 show(tree);
                 cout << endl;
                 break;
