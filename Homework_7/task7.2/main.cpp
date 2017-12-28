@@ -5,7 +5,7 @@ using namespace std;
 
 enum Command
 {
-    exit, addValue, removeValue, containsValue, showInc, showDec, showSpec
+    endProgramm, addValue, removeValue, containsValue, showInc, showDec, showSpec
 };
 
 Command setCommand(int tmp)
