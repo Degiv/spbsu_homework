@@ -8,14 +8,28 @@ void getTree(Node* node, ifstream &fin)
 {
     char token = 0;
     fin.get(token);
-    while (token != '(' && token != 39) //39 = '
+    while (token != '(' && token != '\'')
         fin.get(token);
 
-    if (token == 39) //39 = '
+    if (token == '\'')
     {
         fin.get(token);
-        node->value = token;
-        fin.get(token);
+        if (token == '\\')
+        {
+            fin.get(token);
+            if (token == 'n')
+            {
+                node->value = '\n';
+                fin.get(token);
+            }
+            else
+                node->value = '\\';
+        }
+        else
+        {
+            node->value = token;
+            fin.get(token);
+        }
         return;
     }
 
