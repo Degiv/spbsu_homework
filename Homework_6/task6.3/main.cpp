@@ -6,7 +6,7 @@
 using namespace std;
 
 enum Command {
-    exit, add, find1, find2, save
+    endProgramm, add, find1, find2, save
 };
 
 Command setCommand(int tmp)
