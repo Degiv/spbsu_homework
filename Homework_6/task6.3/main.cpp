@@ -73,7 +73,8 @@ int main()
             case find2:
                 cout << "Enter phone number: ";
                 input(phone);
-                show(phone); cout << endl;
+                show(phone);
+                cout << endl;
                 searched = findPhone(phonebook, phone);
                 cout << "Name is: ";
                 if (searched == nullptr)
@@ -90,6 +91,7 @@ int main()
     }
 
     clearList(phonebook);
+    delete phonebook;
     delete newPerson;
     fout.close();
 }

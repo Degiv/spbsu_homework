@@ -9,7 +9,7 @@ struct ListElement
 
 struct List
 {
-    ListElement *head;
+    ListElement *head = nullptr;
     int size;
 };
 
