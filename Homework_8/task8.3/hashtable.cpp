@@ -33,6 +33,7 @@ void add(HashTable &table, String value);
 
 void update(HashTable &table)
 {
+    String tmp;
     HashTable newTable;
     delete[] newTable.table;
     newTable.size = table.size * 2 + 1;
@@ -42,7 +43,9 @@ void update(HashTable &table)
     {
         while (!isEmpty(table.table[i]))
         {
-            add(newTable, pop(table.table[i]));
+            tmp = pop(table.table[i]);
+            add(newTable, tmp);
+            clear(tmp);
         }
     }
     delete[] table.table;
