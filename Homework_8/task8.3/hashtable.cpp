@@ -73,9 +73,9 @@ void add(HashTable &table, String value)
 void clear(HashTable &table)
 {
     for (int i = 0; i < table.size; ++i)
-    {
         clear(table.table[i]);
-    }
+
+    delete[] table.table;
     table.elementsCounter = 0;
     table.usedCounter = 0;
     table.size = firstSize;
