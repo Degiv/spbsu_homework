@@ -40,7 +40,7 @@ public class Stack {
     public int pop() {
 	int result = -1;
 	if (size == 0)
-		return result;
+	    return result;
 
         result = head.getValue();
         head = head.getNext();
