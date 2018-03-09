@@ -1,4 +1,4 @@
-package com.group144.Degiv;
+package com.group144.degiv;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

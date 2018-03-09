@@ -1,12 +1,11 @@
-package com.group144.Degiv;
+package com.group144.degiv;
 
-public class BubbleSort implements Sorter{
+public class BubbleSort implements Sorter {
     @Override
     public void sort(int[] arr) {
-        for (int i = 0; i < arr.length - 1; ++i){
-            for (int j = 0; j < arr.length - i - 1; ++j){
-                if (arr[j] > arr[j + 1])
-                    swap(arr, j, j + 1);
+        for (int i = 0; i < arr.length - 1; ++i) {
+            for (int j = 0; j < arr.length - i - 1; ++j) {
+                swap(arr, j, j + 1);
             }
         }
     }
