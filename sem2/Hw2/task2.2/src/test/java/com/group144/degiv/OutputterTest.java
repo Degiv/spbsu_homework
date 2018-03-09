@@ -21,15 +21,15 @@ public class OutputterTest {
 
     @Test
     public void OneElementMatrix() throws FileNotFoundException {
-        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(arrayOutputStream));
+        ByteArrayOutputStream actual = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actual));
 
         int[][] numbers = {{1}};
         Outputter outputter = new OutputterSpiralConsole();
         outputter.outputSpiral(numbers);
 
-        String answer = "1 ";
-        assertEquals(answer, arrayOutputStream.toString());
+        String expected = "1 ";
+        assertEquals(expected, actual.toString());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class OutputterTest {
         Scanner file = new Scanner(new File("output.txt"));
         file.useDelimiter("\n");
 
-        String answer = "5 2 3 6 9 8 7 4 1 ";
-        assertEquals(answer, file.nextLine());
+        String expected = "5 2 3 6 9 8 7 4 1 ";
+        assertEquals(expected, file.nextLine());
     }
 }
