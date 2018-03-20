@@ -8,15 +8,15 @@ public class LinkedPriorityQueueTest {
 
     @Test
     public void enqueueAndDequeue() {
-        PriorityQueue<Character> numbers = new LinkedPriorityQueue<>();
-        numbers.enqueue('d', 5);
-        numbers.enqueue('a', 10);
-        numbers.enqueue('b', 7);
-        numbers.enqueue('c', 6);
-        numbers.enqueue('e', 2);
+        PriorityQueue<Character> characters = new LinkedPriorityQueue<>();
+        characters.enqueue('d', 5);
+        characters.enqueue('a', 10);
+        characters.enqueue('b', 7);
+        characters.enqueue('c', 6);
+        characters.enqueue('e', 2);
         Character expected = 'a';
         for (int i = 0; i < 5; ++i) {
-            assertEquals(expected, numbers.dequeue());
+            assertEquals(expected, characters.dequeue());
             expected ++;
         }
     }

@@ -14,6 +14,12 @@ public class LinkedPriorityQueue<T> implements PriorityQueue<T> {
         private int priority;
         private Node next;
 
+        /**
+         *
+         * @param value value of element
+         * @param priority priority of element
+         * @param next next node
+         */
         Node(T value, int priority, Node next) {
             this.value = value;
             this.priority = priority;
@@ -78,7 +84,7 @@ public class LinkedPriorityQueue<T> implements PriorityQueue<T> {
     }
 
     /**
-     * returns value with the highest priority
+     * Returns value with the highest priority and delete it
      *
      * @throws EmptyQueueException if queue is empty
      * @return value with the highest priority
