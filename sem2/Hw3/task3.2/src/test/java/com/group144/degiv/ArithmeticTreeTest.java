@@ -12,7 +12,7 @@ public class ArithmeticTreeTest {
 
     @Test
     public void calculate1() throws FileNotFoundException {
-        File file = new File("D:/task3.2/src/test/java/com/group144/degiv/test1.txt");
+        File file = new File("D:/task3.2/src/test/resources/test1.txt");
         Scanner in = new Scanner(file);
         ArithmeticTree tree = new ArithmeticTree(in.nextLine());
         assertEquals(6, tree.calculate());
@@ -20,7 +20,7 @@ public class ArithmeticTreeTest {
 
     @Test
     public void calculate2() throws FileNotFoundException {
-        File file = new File("D:/task3.2/src/test/java/com/group144/degiv/test2.txt");
+        File file = new File("D:/task3.2/src/test/resources/test2.txt");
         Scanner in = new Scanner(file);
         ArithmeticTree tree = new ArithmeticTree(in.nextLine());
         assertEquals(0, tree.calculate());
@@ -28,7 +28,7 @@ public class ArithmeticTreeTest {
 
     @Test
     public void calculate3() throws FileNotFoundException {
-        File file = new File("D:/task3.2/src/test/java/com/group144/degiv/test3.txt");
+        File file = new File("D:/task3.2/src/test/resources/test3.txt");
         Scanner in = new Scanner(file);
         ArithmeticTree tree = new ArithmeticTree(in.nextLine());
         assertEquals(2, tree.calculate());
