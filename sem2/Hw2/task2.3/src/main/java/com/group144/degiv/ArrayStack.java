@@ -25,7 +25,11 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public T pop() throws NullPointerException {
+    public T pop() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
         T result = data[size - 1];
         size--;
         if (size < capacity / 2 && capacity > INITIAL_SIZE)

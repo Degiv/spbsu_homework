@@ -2,7 +2,7 @@ package com.group144.degiv;
 
 
 public class Calculator {
-    public int calculate(String expression) throws WrongExpressionException {
+    public int calculate(String expression) throws WrongExpressionException, EmptyStackException {
         Stack<Integer> operands = new LinkedStack<>();
         //Stack<Integer> operands = new ArrayStack<>();
 

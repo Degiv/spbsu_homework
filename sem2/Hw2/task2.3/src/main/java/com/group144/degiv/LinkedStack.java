@@ -37,7 +37,10 @@ public class LinkedStack<T> implements Stack<T> {
     }
 
     @Override
-    public T pop() throws NullPointerException{
+    public T pop() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         T result = head.getValue();
         head = head.getNext();
         size--;

@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class CalculatorTest {
 
     @Test
-    public void calculate() throws WrongExpressionException {
+    public void calculate() throws WrongExpressionException, EmptyStackException {
         Calculator calculator = new Calculator();
         String expression = "2 2 + 4 *";
         assertEquals(16, calculator.calculate(expression));
