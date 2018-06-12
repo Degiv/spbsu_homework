@@ -4,11 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import static org.junit.Assert.*;
 
 public class AVLTreeTest {
-
     @Test
     public void size() {
         AVLTree<Integer> tree = new AVLTree<>();

@@ -3,6 +3,7 @@ package com.group144.degiv;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * AVL tree data structure
@@ -12,7 +13,7 @@ public class AVLTree<T extends Comparable<T>> implements Collection<T> {
     /**
      * class realizing tree node
      */
-     public class Node {
+     private class Node {
         private T value;
         private int height;
         private Node left;
@@ -81,7 +82,7 @@ public class AVLTree<T extends Comparable<T>> implements Collection<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new TreeIterator<>(this);
+        return new TreeIterator<>();
     }
 
     /**
@@ -345,5 +346,41 @@ public class AVLTree<T extends Comparable<T>> implements Collection<T> {
             return recursiveContains(node.left, value);
         else
             return recursiveContains(node.right, value);
+    }
+
+    public class TreeIterator<T extends Comparable<T>> implements Iterator<T> {
+        private Node node;
+        private LinkedList<Node> queue;
+
+        TreeIterator() {
+            node = getRoot();
+            queue = new LinkedList<>();
+            queue.addLast(getRoot());
+            if (getRoot().getLeft() != null)
+                queue.addLast(getRoot().getLeft());
+            if (getRoot().getRight() != null)
+                queue.addLast(getRoot().getRight());
+        }
+
+        @Override
+        public boolean hasNext() {
+            return queue.size() > 1;
+        }
+
+        @Override
+        public T next() {
+            T result = (T) node.getValue();
+            if (!hasNext())
+                return result;
+            queue.removeFirst();
+            if (queue.peekFirst() == null)
+                return result;
+            node = queue.peekFirst();
+            if (queue.peekFirst().getLeft() != null)
+                queue.addLast(queue.peekFirst().getLeft());
+            if (queue.peekFirst().getRight() != null)
+                queue.addLast(queue.peekFirst().getRight());
+            return result;
+        }
     }
 }
